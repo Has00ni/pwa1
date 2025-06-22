@@ -2,41 +2,30 @@
 <html>
 <head>
   <title>Mijn PWA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+      background: #fff;
+      color: #111;
+    }
+    h1 {
+      font-size: 1.5em;
+      word-break: break-word;
+    }
+    p {
+      font-size: 1em;
+      margin-bottom: 1em;
+    }
+  </style>
 </head>
 <body>
-  <h1>wweeesseWelkom bij eemijnee kjhoisPseessWejjjjjjjjsA! 🎉</h1>
-  <p>Dffeze app wessrkt eeeeeeoffeeline 📴</p>
-   <p>Deze app ssss eeeeeeeeeeeeeeeoffliene 📴</p>
-   
- <p>Deze app ssssddds eeeeeeeeeeeesseeeossssssffliene 📴</p>
-
-  <script>
-    //if ('serviceWorker' in navigator) {
-      //navigator.serviceWorker.register('service-worker.js');
-    //}
-  </script>
-
-  <script>
-  // Huidige tijd als cache-buster
-  const timestamp = new Date().getTime();
-
-  // Vervang elk src/href door versie met timestamp
-  document.querySelectorAll('link[rel="stylesheet"], script[src]').forEach((el) => {
-    const attr = el.tagName === 'SCRIPT' ? 'src' : 'href';
-    const orig = el.getAttribute(attr);
-    el.setAttribute(attr, orig + '?v=' + timestamp);
-  });
-
-  // Verwijder service worker als die ooit geregistreerd is
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      for (let reg of registrations) {
-        reg.unregister();
-      }
-    });
-  }
-</script>
-
+  <h1>Welkom bij mijn PWA! 🎉</h1>
+  <p>Deze app werkt offline 📶</p>
+  <p>Test je tekst hier, en het schaalt automatisch op iPhone 📱</p>
 </body>
 </html>
