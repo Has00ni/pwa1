@@ -1,31 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-  <title>Mijn PWA</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizMaster – Jouw Leerplatform</title>
   <link rel="manifest" href="manifest.json">
   <style>
     body {
-      font-family: sans-serif;
       margin: 0;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
       line-height: 1.6;
-      background: #fff;
-      color: #111;
     }
-    h1 {
-      font-size: 1.5em;
-      word-break: break-word;
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
     }
-    p {
-      font-size: 1em;
-      margin-bottom: 1em;
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .quiz-section {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-section h2 {
+      margin-top: 0;
+      color: #4a90e2;
+    }
+
+    .question {
+      margin-bottom: 1rem;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    .answers label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3a78c2;
+    }
+
+    @media (max-width: 600px) {
+      header, .container {
+        padding: 15px;
+      }
+      button {
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Welkom bij mijn PWA! 🎉</h1>
-  <p>Deze app werkt offline 📶</p>
-  <p>Test je tekst hier, en het schaalt automatisch op iPhone 📱</p>
+  <header>
+    <h1>QuizMaster 📚</h1>
+    <p>Leer en test je kennis met interactieve lessen!</p>
+  </header>
+
+  <div class="container">
+    <div class="quiz-section">
+      <h2>Les 1: Basiskennis</h2>
+      <div class="question">
+        <p>Wat is de hoofdstad van Nederland?</p>
+        <div class="answers">
+          <label><input type="radio" name="q1"> Rotterdam</label>
+          <label><input type="radio" name="q1"> Utrecht</label>
+          <label><input type="radio" name="q1"> Amsterdam ✅</label>
+        </div>
+      </div>
+      <button onclick="alert('Antwoorden zijn geregistreerd!')">Verzend Antwoorden</button>
+    </div>
+
+    <div class="quiz-section">
+      <h2>Les 2: Technologische Begrippen</h2>
+      <div class="question">
+        <p>Wat betekent HTML?</p>
+        <div class="answers">
+          <label><input type="radio" name="q2"> Hyper Type Machine Language</label>
+          <label><input type="radio" name="q2"> High Text Marking Language</label>
+          <label><input type="radio" name="q2"> HyperText Markup Language ✅</label>
+        </div>
+      </div>
+      <button onclick="alert('Antwoorden zijn geregistreerd!')">Verzend Antwoorden</button>
+    </div>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizMaster – Jouw Leerplatform</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .quiz-section {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-section h2 {
+      margin-top: 0;
+      color: #4a90e2;
+    }
+
+    .question {
+      margin-bottom: 1rem;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    .answers label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3a78c2;
+    }
+
+    @media (max-width: 600px) {
+      header, .container {
+        padding: 15px;
+      }
+      button {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>QuizMaster 📚</h1>
+    <p>Leer en test je kennis met interactieve lessen!</p>
+  </header>
+
+  <div class="container">
+    <div class="quiz-section">
+      <h2>Les 1: Basiskennis</h2>
+      <div class="question">
+        <p>Wat is de hoofdstad van Nederland?</p>
+        <div class="answers">
+          <label><input type="radio" name="q1"> Rotterdam</label>
+          <label><input type="radio" name="q1"> Utrecht</label>
+          <label><input type="radio" name="q1"> Amsterdam ✅</label>
+        </div>
+      </div>
+      <button onclick="alert('Antwoorden zijn geregistreerd!')">Verzend Antwoorden</button>
+    </div>
+
+    <div class="quiz-section">
+      <h2>Les 2: Technologische Begrippen</h2>
+      <div class="question">
+        <p>Wat betekent HTML?</p>
+        <div class="answers">
+          <label><input type="radio" name="q2"> Hyper Type Machine Language</label>
+          <label><input type="radio" name="q2"> High Text Marking Language</label>
+          <label><input type="radio" name="q2"> HyperText Markup Language ✅</label>
+        </div>
+      </div>
+      <button onclick="alert('Antwoorden zijn geregistreerd!')">Verzend Antwoorden</button>
+    </div>
+  </div>
 </body>
 </html>
