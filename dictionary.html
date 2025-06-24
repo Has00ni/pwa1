@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>📚 Woordenlijst | Hikmati</title>
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#6a0dad" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>📚 Woordenlijst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>📚 Woordenlijst</h1>
-    <p>Je opgeslagen woorden</p>
-    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen">
-      <div></div><div></div><div></div>
-    </button>
-
+    <h1>📚 Bekende Woorden</h1>
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen"><div></div><div></div><div></div></button>
     <nav id="mainNav">
       <a href="index.html">🏠 Home</a>
       <a href="lessons.html">📘 Lessen</a>
@@ -26,13 +20,26 @@
       <a href="media.html">🎬 Media</a>
       <a href="login.html">🔐 Login</a>
     </nav>
-
-    <button class="install-btn" id="installBtn">📲 Installeer App</button>
   </header>
+
   <section>
-    <p>⚙️ Inhoud voor Woordenlijst hier…</p>
+    <h2>✅ Woorden die je begrijpt</h2>
+    <ul id="knownList"></ul>
   </section>
-  <button class="back-home" onclick="location='index.html'">Terug naar Home</button>
-  <script src="app.js" type="module"></script>
+
+  <script>
+    const list = document.getElementById("knownList");
+    const known = JSON.parse(localStorage.getItem("knownWords")) || [];
+
+    if (known.length === 0) {
+      list.innerHTML = "<li>⚠️ Nog geen woorden behaald uit quizjes.</li>";
+    } else {
+      known.forEach(word => {
+        const li = document.createElement("li");
+        li.textContent = word;
+        list.appendChild(li);
+      });
+    }
+  </script>
 </body>
 </html>

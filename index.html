@@ -2,204 +2,81 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio | Home</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>🏠 Home | Hikmati</title>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#6a0dad" />
-  <style>
-    /* Basisstijl */
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      background: #f8f4ff;
-    }
-    header {
-      background-color: #6a0dad;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-    header h1 {
-      margin: 0;
-    }
-    nav {
-      display: none;
-      flex-direction: column;
-      background-color: #6a0dad;
-      position: absolute;
-      top: 70px;
-      right: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    nav a:last-child {
-      border-bottom: none;
-    }
-
-    /* Hamburger button */
-    .menu-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-    }
-
-    .install-btn {
-      margin-top: 10px;
-      background-color: #fff;
-      color: #6a0dad;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    section {
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #eee;
-      font-size: 0.9rem;
-    }
-
-    /* Toon menu als actief */
-    nav.active {
-      display: flex;
-    }
-
-    /* Voor grote schermen: menu altijd zichtbaar */
-    @media (min-width: 768px) {
-      nav {
-        display: flex !important;
-        flex-direction: row;
-        justify-content: center;
-        position: static;
-        background: none;
-        box-shadow: none;
-      }
-      nav a {
-        border: none;
-        padding: 10px 20px;
-      }
-      .menu-toggle {
-        display: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Jouw Naam</h1>
-    <p>Web Developer • Designer • Visionair</p>
+    <h1>🌟 Hikmati</h1>
+    <p>Leer Arabisch met liedjes, flashcards en quizjes</p>
 
+    <!-- 🔘 Hamburger knop -->
     <button class="menu-toggle" id="menuBtn" aria-label="Menu openen">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div>
     </button>
 
-<nav id="mainNav">
-  <a href="index.html">🏠 Home</a>
-  <a href="lessons.html">📘 Lessen</a>
-  <a href="flashcards.html">🧠 Flashcards</a>
-  <a href="quiz.html">🧪 Quiz</a>
-  <a href="songs.html">🎵 Liedjes</a>
-  <a href="dictionary.html">📚 Woordenlijst</a>
-  <a href="media.html">🎬 Media</a>
-  <a href="login.html">🔐 Login</a>
-</nav>
+    <!-- 🧭 Navigatie -->
+    <nav id="mainNav">
+      <a href="index.html">🏠 Home</a>
+      <a href="lessons.html">📘 Lessen</a>
+      <a href="flashcards.html">🧠 Flashcards</a>
+      <a href="quiz.html">🧪 Quiz</a>
+      <a href="songs.html">🎵 Liedjes</a>
+      <a href="dictionary.html">📚 Woordenlijst</a>
+      <a href="media.html">🎬 Media</a>
+      <a href="login.html">🔐 Login</a>
+    </nav>
 
+    <!-- 📲 Install & Dark mode -->
     <button class="install-btn" id="installBtn">📲 Installeer App</button>
+    <button id="darkModeToggle" class="mode-toggle">🌙 Donkere modus</button>
   </header>
 
   <section>
-    <h2>Welkom!</h2>
-    <p>Ontdek mijn projecten, oefen met quizzen en flashcards, of bekijk de lessenreeks.</p>
+    <h2>✨ Start hier</h2>
+    <div class="grid">
+      <a href="lessons.html" class="button-flat">📘 Lessen</a>
+      <a href="flashcards.html" class="button-flat">🧠 Flashcards</a>
+      <a href="quiz.html" class="button-flat">🧪 Quiz</a>
+      <a href="songs.html" class="button-flat">🎵 Liedjes</a>
+      <a href="dictionary.html" class="button-flat">📚 Woordenlijst</a>
+      <a href="media.html" class="button-flat">🎬 Media</a>
+    </div>
   </section>
 
-  <footer>
-    © 2025 Jouw Naam
-  </footer>
+  <footer>© 2025 Jouw Naam</footer>
 
+  <script src="app.js" type="module"></script>
+
+  <!-- 🌗 Donkere modus script -->
   <script>
-    // Hamburger menu toggle
-    const menuBtn = document.getElementById('menuBtn');
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const header = document.querySelector('header');
     const nav = document.getElementById('mainNav');
-    menuBtn.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
+    const footer = document.querySelector('footer');
 
-    // Install PWA
-    let deferredPrompt;
-    const installBtn = document.getElementById('installBtn');
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'inline-block';
-    });
+    if (localStorage.getItem('darkMode') === 'true') {
+      body.classList.add('dark-mode');
+      header.classList.add('dark-mode');
+      nav.classList.add('dark-mode');
+      footer.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️ Witte modus';
+    }
 
-    installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('App geïnstalleerd');
-        } else {
-          console.log('Installatie geweigerd');
-        }
-        deferredPrompt = null;
-      });
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      header.classList.toggle('dark-mode');
+      nav.classList.toggle('dark-mode');
+      footer.classList.toggle('dark-mode');
+
+      const isDark = body.classList.contains('dark-mode');
+      toggleBtn.textContent = isDark ? '☀️ Witte modus' : '🌙 Donkere modus';
+      localStorage.setItem('darkMode', isDark);
     });
   </script>
-
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').then(registration => {
-      console.log('SW geregistreerd:', registration);
-
-      // Luister naar updates
-      registration.onupdatefound = () => {
-        const newWorker = registration.installing;
-        if (newWorker) {
-          newWorker.onstatechange = () => {
-            if (newWorker.state === 'installed') {
-              if (navigator.serviceWorker.controller) {
-                // Nieuwe update beschikbaar!
-                console.log('🔄 Update gevonden, vernieuwen...');
-                window.location.reload(); // Automatisch herladen
-              }
-            }
-          };
-        }
-      };
-    }).catch(error => {
-      console.error('SW registratie fout:', error);
-    });
-  }
-</script>
-
 </body>
 </html>

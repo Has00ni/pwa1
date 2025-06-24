@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🕌 Tala‘a al-Badru</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🕌 Tala‘a al-Badru</h1>
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen"><div></div><div></div><div></div></button>
+    <nav id="mainNav">
+      <a href="index.html">🏠 Home</a>
+      <a href="lessons.html">📘 Lessen</a>
+      <a href="flashcards.html">🧠 Flashcards</a>
+      <a href="quiz.html">🧪 Quiz</a>
+      <a href="songs.html">🎵 Liedjes</a>
+      <a href="dictionary.html">📚 Woordenlijst</a>
+      <a href="media.html">🎬 Media</a>
+      <a href="login.html">🔐 Login</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>🎵 Liedtekst</h2>
+    <p><strong>طَلَعَ الْبَدْرُ عَلَيْنَا</strong><br><em>The full moon rose over us</em></p>
+    <p><strong>مِنْ ثَنِيَّاتِ الْوَدَاعِ</strong><br><em>From the valley of Wada</em></p>
+    <p><strong>وَجَبَ الشُّكْرُ عَلَيْنَا</strong><br><em>Gratitude became obligatory upon us</em></p>
+    <p><strong>مَا دَعَا لِلّهِ دَاعِ</strong><br><em>As long as someone calls to Allah</em></p>
+
+    <button id="startQuizBtn" class="install-btn">📊 Start Quiz</button>
+
+    <div id="quizBox" style="display:none;"></div>
+    <canvas id="resultChart" width="300" height="300" style="display:none;margin:20px auto;"></canvas>
+  </section>
+
+  <script>
+    const words = [
+      { arabic: "طَلَعَ", meaning: "rose" },
+      { arabic: "الْبَدْرُ", meaning: "the full moon" },
+      { arabic: "عَلَيْنَا", meaning: "upon us" },
+      { arabic: "ثَنِيَّاتِ", meaning: "valleys" },
+      { arabic: "الْوَدَاعِ", meaning: "of Wada" },
+      { arabic: "وَجَبَ", meaning: "became obligatory" },
+      { arabic: "الشُّكْرُ", meaning: "gratitude" },
+      { arabic: "دَعَا", meaning: "called" },
+      { arabic: "اللّهِ", meaning: "Allah" },
+      { arabic: "دَاعِ", meaning: "caller" }
+    ];
+
+    let current = 0, correct = 0;
+    const quizBox = document.getElementById('quizBox');
+    const chart = document.getElementById('resultChart');
+    const knownWords = JSON.parse(localStorage.getItem('knownWords')) || [];
+
+    function showQuestion() {
+      if (current >= words.length) return showResult();
+
+      const w = words[current];
+      const options = shuffle([
+        w.meaning,
+        ...words.filter(x => x !== w).map(x => x.meaning).slice(0, 2)
+      ]);
+
+      quizBox.innerHTML = `
+        <h3>Wat betekent: <strong>${w.arabic}</strong>?</h3>
+        ${options.map(opt => `<button class="button-flat" onclick="checkAnswer('${opt}')">${opt}</button>`).join("")}
+      `;
+    }
+
+    function checkAnswer(answer) {
+      const w = words[current];
+      if (answer === w.meaning) {
+        correct++;
+        if (!knownWords.includes(w.arabic)) knownWords.push(w.arabic);
+      }
+      current++;
+      showQuestion();
+    }
+
+    function showResult() {
+      quizBox.style.display = "none";
+      chart.style.display = "block";
+
+      localStorage.setItem("knownWords", JSON.stringify(knownWords));
+
+      new Chart(chart, {
+        type: "pie",
+        data: {
+          labels: ["Goed", "Fout"],
+          datasets: [{
+            data: [correct, words.length - correct],
+            backgroundColor: ["#2ecc71", "#e74c3c"]
+          }]
+        }
+      });
+    }
+
+    function shuffle(arr) {
+      return [...arr].sort(() => Math.random() - 0.5);
+    }
+
+    document.getElementById("startQuizBtn").addEventListener("click", () => {
+      document.getElementById("quizBox").style.display = "block";
+      document.getElementById("startQuizBtn").style.display = "none";
+      showQuestion();
+    });
+  </script>
+</body>
+</html>
