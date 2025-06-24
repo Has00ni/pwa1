@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>🕌 Argumenten | Hikmati</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .argument-box {
+      background-color: #6a0dad;
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-size: 1rem;
+      width: 100%;
+      text-align: left;
+      border-radius: 0; /* Hoekloos */
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .argument-box:hover {
+      background-color: #5c0099;
+    }
+
+    .argument-content {
+      display: none;
+      background: #f3eaff;
+      padding: 15px 20px;
+      border-top: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📖 Argumenten tegen misvattingen</h1>
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen"><div></div><div></div><div></div></button>
+    <nav id="mainNav">
+      <a href="index.html">🏠 Home</a>
+      <a href="lessons.html">📘 Lessen</a>
+      <a href="flashcards.html">🧠 Flashcards</a>
+      <a href="quiz.html">🧪 Quiz</a>
+      <a href="songs.html">🎵 Liedjes</a>
+      <a href="dictionary.html">📚 Woordenlijst</a>
+      <a href="media.html">🎬 Media</a>
+      <a href="arguments.html">🕌 Argumenten</a>
+      <a href="login.html">🔐 Login</a>
+    </nav>
+  </header>
+
+  <section class="container">
+    <button class="argument-box" onclick="toggleArgument(0)">
+      Argument #1: Er zijn 2 goden
+    </button>
+    <div class="argument-content">
+      ❌ Incorrect. Check Qur'an 112:1 — "<strong>Say: He is Allah, One.</strong>"
+    </div>
+  </section>
+
+  <script>
+    function toggleArgument(index) {
+      const contents = document.querySelectorAll('.argument-content');
+      const content = contents[index];
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
