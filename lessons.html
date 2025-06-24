@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Portfolio | Lessen</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#6a0dad" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Lessenoverzicht</h1>
+
+    <!-- Hamburger -->
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen">
+      <div></div><div></div><div></div>
+    </button>
+
+    <!-- Navigatie -->
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="lessons.html">Lessen</a>
+      <a href="media.html">Media</a>
+      <a href="login.html">Login</a>
+    </nav>
+
+    <button class="install-btn" id="installBtn">📲 Installeer App</button>
+  </header>
+
+  <section class="lessons" id="lessonsList">
+    <!-- Les-kaarten worden hier dynamisch ingevoegd -->
+  </section>
+
+  <footer>© 2025 Jouw Naam</footer>
+
+  <script src="app.js"></script>
+  <script>
+    /* Les-overzicht dynamisch ophalen en klikbaar maken */
+    fetch('https://backend-pwa1.onrender.com/api/lessons')
+      .then(r => r.json())
+      .then(data => {
+        const list = document.getElementById('lessonsList');
+        data.forEach(les => {
+          const link = document.createElement('a');
+          link.href = `lesson.html?id=${les.id}`;   // ⬅️ doorlinken
+          link.className = 'lesson-card';
+          link.innerHTML = `<h3>${les.title}</h3><p>${les.summary}</p>`;
+          list.appendChild(link);
+        });
+      })
+      .catch(err => console.error('Fout bij laden:', err));
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Quiz</title>
+
+  <!--  PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#6a0dad" />
+
+  <!--  Stijlen -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Quiz Voorbeeld</h1>
+
+    <!-- Hamburger-icoon -->
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen">
+      <div></div><div></div><div></div>
+    </button>
+
+    <!-- Navigatie -->
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="lessons.html">Lessen</a>
+      <a href="media.html">Media</a>
+      <a href="login.html">Login</a>
+    </nav>
+
+    <!-- Install-knop -->
+    <button class="install-btn" id="installBtn">📲 Installeer App</button>
+  </header>
+
+  <section>
+    <div class="quiz-container">
+      <h2 id="q">Vraag komt hier…</h2>
+      <div id="opts" class="quiz-options">
+        <!-- knoppen met opties worden via quiz.js aangemaakt -->
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 Jouw Naam</footer>
+
+  <!--  Jouw quiz-logica -->
+  <script src="quiz.js"></script>
+
+  <!--  Gedeelde app-logica (menu, SW, install) -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>🎬 Media-galerij</title>
+
+  <!-- Basiskleuren & lettertype -->
+  <style>
+    :root {
+      --brand: #4a90e2;
+      --bg: #f0f4f8;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #222;
+      text-align: center;
+    }
+    header {
+      background: var(--brand);
+      color: #fff;
+      padding: 24px 16px;
+    }
+    h1 { margin: 0 0 6px 0; font-size: 1.7rem; }
+    main { padding: 20px 10px 60px; }
+
+    /* Raster voor media-items */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.06);
+      padding: 14px;
+    }
+    .card video,
+    .card img,
+    .card iframe {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    /* Eenvoudige CSS-animatie-demo */
+    .logo-spin {
+      width: 120px;
+      margin: 0 auto 10px;
+      animation: spin 6s linear infinite;
+    }
+    @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) }}
+    
+    /* Navigatieknop */
+    a.button {
+      position: fixed;
+      left: 50%;
+      bottom: 15px;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: var(--brand);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎬 Media-galerij</h1>
+    <p>Video’s, foto’s, animaties en GIFs om Arabisch leren leuk te maken</p>
+  </header>
+
+  <main class="grid">
+
+    <!-- Video (lokaal of extern) -->
+    <div class="card">
+      <h3>📹 Intro-video (MP4)</h3>
+      <video controls poster="poster.jpg">
+        <source src="intro.mp4" type="video/mp4" />
+        Je browser ondersteunt dit videoformaat niet.
+      </video>
+    </div>
+
+    <!-- YouTube embed -->
+    <div class="card">
+      <h3>💻 YouTube-les</h3>
+      <iframe
+        src="https://www.youtube.com/embed/SefKaM6b4yE"
+        title="YouTube-video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Foto -->
+    <div class="card">
+      <h3>🖼️ Motivatie-foto</h3>
+      <img src="https://images.unsplash.com/photo-1502920514313-52581002a659?w=800&q=80"
+           alt="Inspirerende Arabische kalligrafie">
+    </div>
+
+    <!-- Geanimeerde GIF -->
+    <div class="card">
+      <h3>🎉 Gefeliciteerd-GIF</h3>
+      <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
+           alt="Confetti Animation">
+    </div>
+
+    <!-- CSS-animatie (snelle demo) -->
+    <div class="card">
+      <h3>⚙️ CSS-animatie</h3>
+      <img class="logo-spin" src="logo192.png" alt="Draaiend logo">
+      <p>Kijk hoe ons logo langzaam ronddraait 🚀</p>
+    </div>
+
+    <!-- Lottie-animatie (optioneel) -->
+    <div class="card">
+      <h3>✨ Lottie-animatie</h3>
+      <lottie-player
+        src="https://assets10.lottiefiles.com/packages/lf20_yado1k.json"
+        background="transparent"
+        speed="1"
+        style="width:100%;height:200px"
+        loop
+        autoplay>
+      </lottie-player>
+      <!-- Lottie script -->
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    </div>
+
+  </main>
+
+  <!-- Terug naar home -->
+  <a class="button" href="index.html">⬅️ Terug naar home</a>
+</body>
+</html>

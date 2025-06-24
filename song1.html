@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>🕋 Nasheed 1 | Hikmati</title>
+
+  <!-- PWA & stijl -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#6a0dad" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Chart.js voor voortgangscirkel -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>🕋 Klassiek Nasheed</h1>
+    <p>Leer met dit liedje en test jezelf</p>
+
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu openen">
+      <div></div><div></div><div></div>
+    </button>
+
+    <nav id="mainNav">
+      <a href="index.html">🏠 Home</a>
+      <a href="lessons.html">📘 Lessen</a>
+      <a href="flashcards.html">🧠 Flashcards</a>
+      <a href="quiz.html">🧪 Quiz</a>
+      <a href="songs.html">🎵 Liedjes</a>
+      <a href="dictionary.html">📚 Woordenlijst</a>
+      <a href="media.html">🎬 Media</a>
+      <a href="login.html">🔐 Login</a>
+    </nav>
+
+    <button class="install-btn" id="installBtn">📲 Installeer App</button>
+  </header>
+
+  <!-- ===== LIED & QUIZ ===== -->
+  <section style="max-width:760px;margin:0 auto;padding:20px;">
+    <h2>📜 Arabische Tekst</h2>
+    <p class="arabic" style="font-size:1.5rem;margin-bottom:1rem;">
+      يا بابَ الرَّحمةِ، يا بابَ السَّلامِ
+    </p>
+
+    <h2>🌍 Engelse Vertaling</h2>
+    <p>O gate of mercy, O gate of peace</p>
+
+    <!-- ⭐️ Knop met id -->
+    <button id="quizBtn" class="button-flat" style="margin-top:20px;">
+      🧪 Start Quizje
+    </button>
+
+    <div style="margin-top:30px;text-align:center;">
+      <canvas id="progressChart" width="220" height="220"></canvas>
+    </div>
+  </section>
+
+  <button class="back-home" onclick="location='songs.html'">Terug naar Liedjes</button>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="app.js" type="module"></script>
+  <script src="quiz-logic.js" type="module"></script>
+</body>
+</html>
