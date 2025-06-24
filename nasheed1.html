@@ -36,77 +36,78 @@
     <canvas id="resultChart" width="300" height="300" style="display:none;margin:20px auto;"></canvas>
   </section>
 
-  <script>
-    const words = [
-      { arabic: "طَلَعَ", meaning: "rose" },
-      { arabic: "الْبَدْرُ", meaning: "the full moon" },
-      { arabic: "عَلَيْنَا", meaning: "upon us" },
-      { arabic: "ثَنِيَّاتِ", meaning: "valleys" },
-      { arabic: "الْوَدَاعِ", meaning: "of Wada" },
-      { arabic: "وَجَبَ", meaning: "became obligatory" },
-      { arabic: "الشُّكْرُ", meaning: "gratitude" },
-      { arabic: "دَعَا", meaning: "called" },
-      { arabic: "اللّهِ", meaning: "Allah" },
-      { arabic: "دَاعِ", meaning: "caller" }
-    ];
+<!-- Bestaande HTML boven blijft hetzelfde -->
+<script>
+  const words = [
+    { arabic: "طَلَعَ",    meaning: "rose",            pos: "verb"  },
+    { arabic: "الْبَدْرُ", meaning: "the full moon",   pos: "noun"  },
+    { arabic: "عَلَيْنَا", meaning: "upon us",         pos: "prep"  },
+    { arabic: "ثَنِيَّاتِ",meaning: "valleys",         pos: "noun"  },
+    { arabic: "الْوَدَاعِ",meaning: "of Wada",         pos: "noun"  },
+    { arabic: "وَجَبَ",    meaning: "became obligatory",pos:"verb"  },
+    { arabic: "الشُّكْرُ",meaning: "gratitude",        pos: "noun"  },
+    { arabic: "دَعَا",     meaning: "called",          pos: "verb"  },
+    { arabic: "اللّهِ",    meaning: "Allah",           pos: "noun"  },
+    { arabic: "دَاعِ",     meaning: "caller",          pos: "noun"  }
+  ];
 
-    let current = 0, correct = 0;
-    const quizBox = document.getElementById('quizBox');
-    const chart = document.getElementById('resultChart');
-    const knownWords = JSON.parse(localStorage.getItem('knownWords')) || [];
+  let current = 0, correct = 0;
+  const quizBox = document.getElementById('quizBox');
+  const chart   = document.getElementById('resultChart');
 
-    function showQuestion() {
-      if (current >= words.length) return showResult();
+  function loadStore(){return JSON.parse(localStorage.getItem('knownData')||'[]');}
+  function saveStore(data){localStorage.setItem('knownData',JSON.stringify(data));}
 
-      const w = words[current];
-      const options = shuffle([
-        w.meaning,
-        ...words.filter(x => x !== w).map(x => x.meaning).slice(0, 2)
-      ]);
+  function updateKnown(word){
+    const store = loadStore();
+    const idx   = store.findIndex(w=>w.arabic===word.arabic);
+    if(idx>-1){ store[idx].count++; }
+    else      { store.push({...word,count:1}); }
+    saveStore(store);
+  }
 
-      quizBox.innerHTML = `
-        <h3>Wat betekent: <strong>${w.arabic}</strong>?</h3>
-        ${options.map(opt => `<button class="button-flat" onclick="checkAnswer('${opt}')">${opt}</button>`).join("")}
-      `;
+  function shuffle(arr){return [...arr].sort(()=>Math.random()-0.5);}
+
+  function showQuestion(){
+    if(current>=words.length){return showResult();}
+    const w = words[current];
+    const opts = shuffle([
+      w.meaning,
+      ...words.filter(x=>x!==w).map(x=>x.meaning).slice(0,2)
+    ]);
+
+    quizBox.innerHTML = `
+      <h3>Wat betekent <strong>${w.arabic}</strong>?</h3>
+      ${opts.map(o=>`<button class="button-flat" onclick="check('${o}')">${o}</button>`).join('')}
+    `;
+  }
+
+  window.check = answer=>{
+    const w = words[current];
+    if(answer===w.meaning){
+      correct++;
+      updateKnown(w);
     }
+    current++; showQuestion();
+  };
 
-    function checkAnswer(answer) {
-      const w = words[current];
-      if (answer === w.meaning) {
-        correct++;
-        if (!knownWords.includes(w.arabic)) knownWords.push(w.arabic);
-      }
-      current++;
-      showQuestion();
-    }
-
-    function showResult() {
-      quizBox.style.display = "none";
-      chart.style.display = "block";
-
-      localStorage.setItem("knownWords", JSON.stringify(knownWords));
-
-      new Chart(chart, {
-        type: "pie",
-        data: {
-          labels: ["Goed", "Fout"],
-          datasets: [{
-            data: [correct, words.length - correct],
-            backgroundColor: ["#2ecc71", "#e74c3c"]
-          }]
-        }
-      });
-    }
-
-    function shuffle(arr) {
-      return [...arr].sort(() => Math.random() - 0.5);
-    }
-
-    document.getElementById("startQuizBtn").addEventListener("click", () => {
-      document.getElementById("quizBox").style.display = "block";
-      document.getElementById("startQuizBtn").style.display = "none";
-      showQuestion();
+  function showResult(){
+    quizBox.style.display='none';
+    chart.style.display='block';
+    new Chart(chart,{
+      type:'pie',
+      data:{labels:['Goed','Fout'],
+      datasets:[{data:[correct,words.length-correct],
+      backgroundColor:['#2ecc71','#e74c3c']}]}
     });
-  </script>
+  }
+
+  document.getElementById('startQuizBtn').onclick=()=>{
+    quizBox.style.display='block';
+    document.getElementById('startQuizBtn').style.display='none';
+    showQuestion();
+  };
+</script>
+
 </body>
 </html>

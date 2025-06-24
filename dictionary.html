@@ -2,13 +2,13 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>📚 Woordenlijst</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>📚 Woordenlijst | Hikmati</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>📚 Bekende Woorden</h1>
+    <h1>📚 Woordenlijst</h1>
     <button class="menu-toggle" id="menuBtn" aria-label="Menu openen"><div></div><div></div><div></div></button>
     <nav id="mainNav">
       <a href="index.html">🏠 Home</a>
@@ -22,24 +22,45 @@
     </nav>
   </header>
 
-  <section>
-    <h2>✅ Woorden die je begrijpt</h2>
-    <ul id="knownList"></ul>
+  <section style="max-width:800px;margin:0 auto;padding:20px;">
+    <label for="filter">Filter:</label>
+    <select id="filter">
+      <option value="">Alles</option>
+      <option value="noun">Noun</option>
+      <option value="verb">Verb</option>
+    </select>
+
+    <table style="width:100%;border-collapse:collapse;margin-top:15px;">
+      <thead>
+        <tr style="background:#6a0dad;color:#fff;">
+          <th style="padding:8px;border:1px solid #ddd;">Arabisch woord</th>
+          <th style="padding:8px;border:1px solid #ddd;">Aantal goed</th>
+          <th style="padding:8px;border:1px solid #ddd;">Vertaling</th>
+        </tr>
+      </thead>
+      <tbody id="dictBody"></tbody>
+    </table>
   </section>
 
   <script>
-    const list = document.getElementById("knownList");
-    const known = JSON.parse(localStorage.getItem("knownWords")) || [];
+    const body = document.getElementById('dictBody');
+    const filter = document.getElementById('filter');
 
-    if (known.length === 0) {
-      list.innerHTML = "<li>⚠️ Nog geen woorden behaald uit quizjes.</li>";
-    } else {
-      known.forEach(word => {
-        const li = document.createElement("li");
-        li.textContent = word;
-        list.appendChild(li);
-      });
+    function render(){
+      const data = JSON.parse(localStorage.getItem('knownData')||'[]');
+      const show = filter.value ? data.filter(w=>w.pos===filter.value) : data;
+
+      body.innerHTML = show.length ?
+        show.map(w=>`<tr>
+          <td style="padding:8px;border:1px solid #ddd;">${w.arabic}</td>
+          <td style="padding:8px;border:1px solid #ddd;text-align:center;">${w.count}</td>
+          <td style="padding:8px;border:1px solid #ddd;">${w.meaning}</td>
+        </tr>`).join('')
+        : `<tr><td colspan="3" style="padding:8px;">Nog geen woorden opgeslagen.</td></tr>`;
     }
+
+    filter.onchange = render;
+    render();
   </script>
 </body>
 </html>
