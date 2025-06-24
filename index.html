@@ -1,35 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PWA1 Install App</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4a90e2">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arabisch leren met PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4a90e2" />
   <style>
     body {
-      font-family: sans-serif;
-      padding: 20px;
+      font-family: "Segoe UI", sans-serif;
+      padding: 0;
       margin: 0;
+      background: #f0f4f8;
       text-align: center;
     }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 30px 20px;
+    }
+    img.hero {
+      max-width: 100%;
+      height: auto;
+    }
+    section {
+      padding: 20px;
+    }
+    button, a.button {
+      margin: 10px;
+      padding: 12px 24px;
       font-size: 1rem;
       background-color: #4a90e2;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-  <h1>Welkom bij mijn PWA 🎉</h1>
-  <p>Je kunt deze app installeren op je telefoon of desktop!</p>
-  <button id="installBtn" style="display:none;">📲 Installeer deze app</button>
+  <header>
+    <h1>📱 Welkom bij mijn Arabische PWA</h1>
+    <p>Leer Arabisch op een leuke en muzikale manier!</p>
+  </header>
+
+  <img class="hero" src="https://images.unsplash.com/photo-1579546928687-8863a05b7c69" alt="Arabisch leren" />
+
+  <section>
+    <p>📲 Installeer deze app op je telefoon of desktop:</p>
+    <button id="installBtn" style="display:none;">Installeer deze app</button>
+
+    <div>
+      <a class="button" href="song.html">🎵 Arabisch liedje leren</a>
+      <a class="button" href="lessons.html">📘 Arabische lessen</a>
+    </div>
+  </section>
 
   <script>
     let deferredPrompt;
